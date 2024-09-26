@@ -4,56 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>10월 3일 개천절</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-image: url('image1.jpeg');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-        }
-        .container {
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 30px;
-            border-radius: 10px;
-            display: inline-block;
-            margin-top: 50px;
-            max-width: 600px;
-            width: 90%;
-        }
-        .hidden {
-            display: none;
-        }
-        .correct {
-            color: green;
-        }
-        .incorrect {
-            color: red;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            margin: 15px 0;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-            background-color: #4CAF50;
-            color: white;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        .question {
-            text-align: left;
-            margin: 15px 0;
-        }
-    </style>
+    <!-- 외부 CSS 파일 링크 -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- 저작권 표시 -->
+    <div class="copyright">
+        &copy; 2024 HeyoCoding. All rights reserved.
+    </div>
+
     <div class="container">
         <h1>개천절의 의미</h1>
         <p>개천절은 단군 왕검이 고조선을 건국한 날을 기념하는 대한민국의 국경일입니다.</p>
@@ -120,50 +79,7 @@
         </div>
     </div>
 
-    <script>
-        document.getElementById('quizStartButton').addEventListener('click', function() {
-            document.getElementById('quizSection').classList.remove('hidden');
-            document.getElementById('quizStartButton').classList.add('hidden');
-        });
-
-        function checkQuiz() {
-            const quizForm = document.getElementById('quizForm');
-            const answers = quizForm.querySelectorAll('input[type="radio"]:checked');
-            let score = 0;
-            const total = 5; 
-
-            const correctAnswers = {
-                q1: 'correct',
-                q2: 'correct',
-                q3: 'correct',
-                q4: 'correct',
-                q5: 'correct'
-            };
-
-            const answerDetails = document.getElementById('answerDetails');
-            answerDetails.innerHTML = '';
-
-            for (let i = 1; i <= total; i++) {
-                const qName = 'q' + i;
-                const selected = quizForm.querySelector(`input[name="${qName}"]:checked`);
-                if (selected) {
-                    if (selected.value === correctAnswers[qName]) {
-                        score++;
-                        answerDetails.innerHTML += `<p class="correct">질문 ${i}: 정답</p>`;
-                    } else {
-                        const correctLabel = quizForm.querySelector(`input[name="${qName}"][value="correct"]`).nextElementSibling.textContent;
-                        answerDetails.innerHTML += `<p class="incorrect">질문 ${i}: 오답 - 정답은 "${correctLabel}"입니다.</p>`;
-                    }
-                } else {
-                    const correctLabel = quizForm.querySelector(`input[name="${qName}"][value="correct"]`).nextElementSibling.textContent;
-                    answerDetails.innerHTML += `<p class="incorrect">질문 ${i}: 오답 - 정답은 "${correctLabel}"입니다.</p>`;
-                }
-            }
-
-            document.getElementById('score').textContent = `총 ${total}문제 중 ${score}문제 맞추셨습니다.`;
-            document.getElementById('resultSection').classList.remove('hidden');
-            document.getElementById('quizSection').classList.add('hidden');
-        }
-    </script>
+    <!-- 외부 JavaScript 파일 링크 -->
+    <script src="script.js"></script>
 </body>
 </html>
