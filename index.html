@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>개천절 퀴즈</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-image: url('https://www.home-learn.co.kr/common/image.do?imgPath=newsroom&imgName=CK20230904151550090.jpeg&imgGubun=D'); /* 배경 이미지 링크 삽입 */
+            background-size: cover;
+            background-position: center;
+            color: white;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 50px;
+            max-width: 600px;
+            width: 90%;
+        }
+        .hidden {
+            display: none;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 15px 0;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .question {
+            text-align: left;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 초기 정보 섹션: 개천절의 의미 -->
+        <h1>개천절의 의미</h1>
+        <p>개천절은 단군 왕검이 고조선을 건국한 날을 기념하는 대한민국의 국경일입니다.</p>
+        
+        <!-- 퀴즈 시작 버튼 -->
+        <button id="quizStartButton">퀴즈 풀기</button>
+
+        <!-- 퀴즈 섹션 -->
+        <div id="quizSection" class="hidden">
+            <form id="quizForm">
+                <!-- 퀴즈 질문들 -->
+                <div class="question">
+                    <p>1. 개천절은 몇 월 며칠인가요?</p>
+                    <input type="radio" name="q1" value="wrong" id="q1a1">
+                    <label for="q1a1">8월 15일</label><br>
+                    <input type="radio" name="q1" value="correct" id="q1a2">
+                    <label for="q1a2">10월 3일</label><br>
+                    <input type="radio" name="q1" value="wrong" id="q1a3">
+                    <label for="q1a3">12월 25일</label><br>
+                </div>
+                <div class="question">
+                    <p>2. 개천절은 무슨 일을 기념하는 날인가요?</p>
+                    <input type="radio" name="q2" value="correct" id="q2a1">
+                    <label for="q2a1">고조선 건국</label><br>
+                    <input type="radio" name="q2" value="wrong" id="q2a2">
+                    <label for="q2a2">대한독립선언</label><br>
+                    <input type="radio" name="q2" value="wrong" id="q2a3">
+                    <label for="q2a3">헌법 제정</label><br>
+                </div>
+                <div class="question">
+                    <p>3. 개천절은 어떤 나라의 국경일인가요?</p>
+                    <input type="radio" name="q3" value="wrong" id="q3a1">
+                    <label for="q3a1">일본</label><br>
+                    <input type="radio" name="q3" value="correct" id="q3a2">
+                    <label for="q3a2">대한민국</label><br>
+                    <input type="radio" name="q3" value="wrong" id="q3a3">
+                    <label for="q3a3">중국</label><br>
+                </div>
+                <div class="question">
+                    <p>4. 단군 왕검이 고조선을 건국한 해는?</p>
+                    <input type="radio" name="q4" value="correct" id="q4a1">
+                    <label for="q4a1">기원전 2333년</label><br>
+                    <input type="radio" name="q4" value="wrong" id="q4a2">
+                    <label for="q4a2">기원전 1000년</label><br>
+                    <input type="radio" name="q4" value="wrong" id="q4a3">
+                    <label for="q4a3">기원전 500년</label><br>
+                </div>
+                <div class="question">
+                    <p>5. 개천절의 의미로 가장 적절한 것은?</p>
+                    <input type="radio" name="q5" value="wrong" id="q5a1">
+                    <label for="q5a1">대한민국 독립 기념일</label><br>
+                    <input type="radio" name="q5" value="correct" id="q5a2">
+                    <label for="q5a2">고조선 건국일</label><br>
+                    <input type="radio" name="q5" value="wrong" id="q5a3">
+                    <label for="q5a3">헌법 제정 기념일</label><br>
+                </div>
+                
+                <!-- 확인 버튼 -->
+                <button type="button" onclick="checkQuiz()">확인</button>
+            </form>
+        </div>
+
+        <!-- 결과 섹션: 이미지와 설명 제거됨 -->
+        <div id="resultSection" class="hidden">
+            <h2>퀴즈 결과</h2>
+            <p id="score"></p>
+            <div id="answerDetails"></div>
+            <button onclick="location.reload()">다시 풀기</button>
+        </div>
+    </div>
+
+    <script>
+        // 퀴즈 시작 버튼 클릭 시 퀴즈 섹션 표시
+        document.getElementById('quizStartButton').addEventListener('click', function() {
+            document.getElementById('quizSection').classList.remove('hidden');
+            document.getElementById('quizStartButton').classList.add('hidden');
+        });
+
+        // 퀴즈 점수 및 결과 확인 함수
+        function checkQuiz() {
+            const quizForm = document.getElementById('quizForm');
+            const answers = quizForm.querySelectorAll('input[type="radio"]:checked');
+            let score = 0;
+            const total = 5; // 총 질문 개수
+
+            const correctAnswers = {
+                q1: 'correct',
+                q2: 'correct',
+                q3: 'correct',
+                q4: 'correct',
+                q5: 'correct'
+            };
+
+            const answerDetails = document.getElementById('answerDetails');
+            answerDetails.innerHTML = '';
+
+            for (let i = 1; i <= total; i++) {
+                const qName = 'q' + i;
+                const selected = quizForm.querySelector(`input[name="${qName}"]:checked`);
+                if (selected) {
+                    if (selected.value === correctAnswers[qName]) {
+                        score++;
+                        answerDetails.innerHTML += `<p class="correct">질문 ${i}: 정답</p>`;
+                    } else {
+                        const correctLabel = quizForm.querySelector(`input[name="${qName}"][value="correct"]`).nextElementSibling.textContent;
+                        answerDetails.innerHTML += `<p class="incorrect">질문 ${i}: 오답 - 정답은 "${correctLabel}"입니다.</p>`;
+                    }
+                } else {
+                    const correctLabel = quizForm.querySelector(`input[name="${qName}"][value="correct"]`).nextElementSibling.textContent;
+                    answerDetails.innerHTML += `<p class="incorrect">질문 ${i}: 응답 없음 - 정답은 "${correctLabel}"입니다.</p>`;
+                }
+            }
+
+            document.getElementById('score').textContent = `총 ${total}문제 중 ${score}문제 맞추셨습니다.`;
+            document.getElementById('resultSection').classList.remove('hidden');
+            document.getElementById('quizSection').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
