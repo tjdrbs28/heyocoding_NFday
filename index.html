@@ -156,7 +156,7 @@
                     }
                 } else {
                     const correctLabel = quizForm.querySelector(`input[name="${qName}"][value="correct"]`).nextElementSibling.textContent;
-                    answerDetails.innerHTML += `<p class="incorrect">질문 ${i}: 응답 없음 - 정답은 "${correctLabel}"입니다.</p>`;
+                    answerDetails.innerHTML += `<p class="incorrect">질문 ${i}: 오답 - 정답은 "${correctLabel}"입니다.</p>`;
                 }
             }
 
